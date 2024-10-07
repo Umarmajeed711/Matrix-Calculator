@@ -35,9 +35,9 @@
     <div id="matrix" class="matrix d-flex justify-content-center mt-3">
       <div class="d-flex flex-column">
         <div class="d-flex mt-3 justify-content-center align-items-center">
-          <div id="mp1"></div>
+          <div id="mat1"></div>
           <div><h1>+</h1></div>
-          <div id="mp2"></div>
+          <div id="mat2"></div>
         </div>
 
         <div
@@ -51,7 +51,7 @@
         </div>
 
         <div class="mt-3 d-flex justify-content-center">
-          <div id="rmp3"></div>
+          <div id="mat3"></div>
         </div>
       </div>
     </div>
@@ -60,25 +60,25 @@
       let input = "";
 
       function generate() {
-        let mp1 = document.querySelector("#mp1");
-        let mp2 = document.querySelector("#mp2");
-        let rmp3 = document.querySelector("#rmp3");
+        let mat1 = document.querySelector("#mat1");
+        let mat2 = document.querySelector("#mat2");
+        let mat3 = document.querySelector("#mat3");
 
-        mp1.innerHTML = "";
-        mp2.innerHTML = "";
-        rmp3.innerHTML = "";
+        mat1.innerHTML = "";
+        mat2.innerHTML = "";
+        mat3.innerHTML = "";
 
         input = +document.querySelector("#input").value;
 
         for (let i = 0; i < input; i++) {
           for (let j = 0; j < input; j++) {
-            mp1.innerHTML += `<input type="number" required min="0" max="100" id="m1-${i}-${j}" value='0'>`;
-            mp2.innerHTML += `<input type="number" required min="0" max="100" id="m2-${i}-${j}" value='0'>`;
-            rmp3.innerHTML += `<input type="number" readonly required min="0" max="100" id="rmp3-${i}-${j}" value='0'>`;
+            mat1.innerHTML += `<input type="number" required min="0" max="100" id="m1-${i}-${j}" value='0'>`;
+            mat2.innerHTML += `<input type="number" required min="0" max="100" id="m2-${i}-${j}" value='0'>`;
+            mat3.innerHTML += `<input type="number" readonly required min="0" max="100" id="mat3-${i}-${j}" value='0'>`;
           }
-          mp1.innerHTML += `<br>`;
-          mp2.innerHTML += `<br>`;
-          rmp3.innerHTML += `<br>`;
+          mat1.innerHTML += `<br>`;
+          mat2.innerHTML += `<br>`;
+          mat3.innerHTML += `<br>`;
         }
         document.querySelector("#matrix").classList.remove("matrix");
       }
@@ -86,33 +86,33 @@
       // function for additon
 
       function add() {
-        let matrixa = [];
-        let matrixb = [];
+        let matrix1 = [];
+        let matrix2 = [];
 
         for (let i = 0; i < input; i++) {
           for (let j = 0; j < input; j++) {
-            if (matrixa[i] === undefined) matrixa[i] = [];
-            if (matrixb[i] === undefined) matrixb[i] = [];
+            if (matrix1[i] === undefined) matrix1[i] = [];
+            if (matrix2[i] === undefined) matrix2[i] = [];
 
-            matrixa[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
-            matrixb[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
+            matrix1[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
+            matrix2[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
           }
         }
 
-        let result = addMatrix(matrixa, matrixb);
+        let result = addMatrix(matrix1, matrix2);
         for (let i = 0; i < result.length; i++) {
           for (let j = 0; j < result[i].length; j++) {
-            document.querySelector(`#rmp3-${i}-${j}`).value = result[i][j];
+            document.querySelector(`#mat3-${i}-${j}`).value = result[i][j];
           }
         }
       }
 
-      function addMatrix(matrixa, matrixb) {
+      function addMatrix(matrix1, matrix2) {
         let result = [];
-        for (let i = 0; i < matrixa.length; i++) {
+        for (let i = 0; i < matrix1.length; i++) {
           result[i] = [];
-          for (let j = 0; j < matrixb[i].length; j++) {
-            result[i][j] = matrixa[i][j] + matrixb[i][j];
+          for (let j = 0; j < matrix2[i].length; j++) {
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
           }
         }
         return result;
@@ -120,33 +120,33 @@
 
       // function for Subtraction
       function sub() {
-        let matrixa = [];
-        let matrixb = [];
+        let matrix1 = [];
+        let matrix2 = [];
 
         for (let i = 0; i < input; i++) {
           for (let j = 0; j < input; j++) {
-            if (matrixa[i] === undefined) matrixa[i] = [];
-            if (matrixb[i] === undefined) matrixb[i] = [];
+            if (matrix1[i] === undefined) matrix1[i] = [];
+            if (matrix2[i] === undefined) matrix2[i] = [];
 
-            matrixa[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
-            matrixb[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
+            matrix1[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
+            matrix2[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
           }
         }
 
-        let result = subMatrix(matrixa, matrixb);
+        let result = subMatrix(matrix1, matrix2);
         for (let i = 0; i < result.length; i++) {
           for (let j = 0; j < result[i].length; j++) {
-            document.querySelector(`#rmp3-${i}-${j}`).value = result[i][j];
+            document.querySelector(`#mat3-${i}-${j}`).value = result[i][j];
           }
         }
       }
 
-      function subMatrix(matrixa, matrixb) {
+      function subMatrix(matrix1, matrix2) {
         let result = [];
-        for (let i = 0; i < matrixa.length; i++) {
+        for (let i = 0; i < matrix1.length; i++) {
           result[i] = [];
-          for (let j = 0; j < matrixb[i].length; j++) {
-            result[i][j] = matrixa[i][j] - matrixb[i][j];
+          for (let j = 0; j < matrix2[i].length; j++) {
+            result[i][j] = matrix1[i][j] - matrix2[i][j];
           }
         }
         return result;
@@ -154,33 +154,33 @@
 
       // funtion for Multiplication
       function mul() {
-        let matrixa = [];
-        let matrixb = [];
+        let matrix1 = [];
+        let matrix2 = [];
 
         for (let i = 0; i < input; i++) {
           for (let j = 0; j < input; j++) {
-            if (matrixa[i] === undefined) matrixa[i] = [];
-            if (matrixb[i] === undefined) matrixb[i] = [];
+            if (matrix1[i] === undefined) matrix1[i] = [];
+            if (matrix2[i] === undefined) matrix2[i] = [];
 
-            matrixa[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
-            matrixb[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
+            matrix1[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
+            matrix2[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
           }
         }
 
-        let result = mulMatrix(matrixa, matrixb);
+        let result = mulMatrix(matrix1, matrix2);
         for (let i = 0; i < result.length; i++) {
           for (let j = 0; j < result[i].length; j++) {
-            document.querySelector(`#rmp3-${i}-${j}`).value = result[i][j];
+            document.querySelector(`#mat3-${i}-${j}`).value = result[i][j];
           }
         }
       }
 
-      function mulMatrix(matrixa, matrixb) {
+      function mulMatrix(matrix1, matrix2) {
         let result = [];
-        for (let i = 0; i < matrixa.length; i++) {
+        for (let i = 0; i < matrix1.length; i++) {
           result[i] = [];
-          for (let j = 0; j < matrixb[i].length; j++) {
-            result[i][j] = matrixa[i][j] * matrixb[i][j];
+          for (let j = 0; j < matrix2[i].length; j++) {
+            result[i][j] = matrix1[i][j] * matrix2[i][j];
           }
         }
         return result;
@@ -188,33 +188,33 @@
 
       // function for Division
       function div() {
-        let matrixa = [];
-        let matrixb = [];
+        let matrix1 = [];
+        let matrix2 = [];
 
         for (let i = 0; i < input; i++) {
           for (let j = 0; j < input; j++) {
-            if (matrixa[i] === undefined) matrixa[i] = [];
-            if (matrixb[i] === undefined) matrixb[i] = [];
+            if (matrix1[i] === undefined) matrix1[i] = [];
+            if (matrix2[i] === undefined) matrix2[i] = [];
 
-            matrixa[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
-            matrixb[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
+            matrix1[i][j] = +document.querySelector(`#m1-${i}-${j}`).value;
+            matrix2[i][j] = +document.querySelector(`#m2-${i}-${j}`).value;
           }
         }
 
-        let result = divMatrix(matrixa, matrixb);
+        let result = divMatrix(matrix1, matrix2);
         for (let i = 0; i < result.length; i++) {
           for (let j = 0; j < result[i].length; j++) {
-            document.querySelector(`#rmp3-${i}-${j}`).value = result[i][j];
+            document.querySelector(`#mat3-${i}-${j}`).value = result[i][j];
           }
         }
       }
 
-      function divMatrix(matrixa, matrixb) {
+      function divMatrix(matrix1, matrix2) {
         let result = [];
-        for (let i = 0; i < matrixa.length; i++) {
+        for (let i = 0; i < matrix1.length; i++) {
           result[i] = [];
-          for (let j = 0; j < matrixb[i].length; j++) {
-            result[i][j] = (matrixa[i][j] / matrixb[i][j]).toFixed(2);
+          for (let j = 0; j < matrix2[i].length; j++) {
+            result[i][j] = (matrix1[i][j] / matrix2[i][j]).toFixed(2);
           }
         }
         return result;
